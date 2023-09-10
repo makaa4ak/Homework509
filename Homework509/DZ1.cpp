@@ -4,45 +4,46 @@ using namespace std;
 
 int main()
 {
-	int userChoice;
+	int UserChoice;
 	bool returnToMain = false;
+
 	while (true)
 	{
 		printMenuMain();
 		cout << "\nChoose option: ";
-		cin >> userChoice;
+		cin >> UserChoice;
 		cin.ignore(255, '\n');
 
-		switch (userChoice)
+		switch (UserChoice)
 		{
-		case codeAddEmployee:
+		case CodeAddEmployee:
 			addEmployee(pathEmployee);
 			break;
-		case codeDelEmployee:
+		case CodeDelEmployee:
 			delEmployee(pathEmployee, pathTemp);
 			break;
-		case codeMenuReport:
+		case CodeMenuReport:
 			returnToMain = false;
 			do
 			{
 				system("cls");
 				printMenuReport();
 				cout << "\nChoose option: ";
-				cin >> userChoice;
+				cin >> UserChoice;
 				cin.ignore(255, '\n');
 				cout << endl;
-				switch (userChoice)
+				switch (UserChoice)
 				{
-				case codePrintAllEmployee:
+				case CodePrintAllEmployee:
 					printAllEmployee(pathEmployee);
 					break;
-				case codePrintInfoEmployee:
+				case CodePrintInfoEmployee:
 					printInfoEmployee(pathEmployee);
 					break;
-				case codeSearchSalaryRange:
+				case CodeSearchSalaryRange:
 					searchSalaryRange(pathEmployee);
 					break;
-				case codeExitReport:
+				case CodeExitReport:
 					cout << "Returning to main menu...";
 					returnToMain = true;
 					break;
@@ -54,7 +55,7 @@ int main()
 					system("pause");
 			} while (!returnToMain);
 			break;
-		case codeExitProgram:
+		case CodeExitProgram:
 			cout << "Thanks for using our program!" << endl;
 			return 0;
 		default:
@@ -285,16 +286,16 @@ void searchSalaryRange(const char pathEmployee[])
 void printMenuMain()
 {
 	cout << "\tMain menu:" << endl;
-	cout << "[" << codeAddEmployee << "] - Add new employee" << endl;
-	cout << "[" << codeDelEmployee << "] - Delete employee" << endl;
-	cout << "[" << codeMenuReport << "] - Open report menu" << endl;
-	cout << "[" << codeExitProgram << "] - Exit the program" << endl;
+	cout << "[" << CodeAddEmployee << "] - Add new employee" << endl;
+	cout << "[" << CodeDelEmployee << "] - Delete employee" << endl;
+	cout << "[" << CodeMenuReport << "] - Open report menu" << endl;
+	cout << "[" << CodeExitProgram << "] - Exit the program" << endl;
 }
 void printMenuReport()
 {
 	cout << "\tReport options:" << endl;
-	cout << "[" << codePrintAllEmployee << "] - Print full list of employee" << endl;
-	cout << "[" << codePrintInfoEmployee << "] - Print information about the employee" << endl;
-	cout << "[" << codeSearchSalaryRange << "] - Search by salary range" << endl;
-	cout << "[" << codeExitReport << "] - Go back to main menu" << endl;
+	cout << "[" << CodePrintAllEmployee << "] - Print full list of employee" << endl;
+	cout << "[" << CodePrintInfoEmployee << "] - Print information about the employee" << endl;
+	cout << "[" << CodeSearchSalaryRange << "] - Search by salary range" << endl;
+	cout << "[" << CodeExitReport << "] - Go back to main menu" << endl;
 }

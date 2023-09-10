@@ -15,11 +15,11 @@ struct Employee
 
 enum actionsCodeMain
 {
-	codeAddEmployee = 1, codeDelEmployee, codeMenuReport, codeExitProgram
+	CodeAddEmployee = 1, CodeDelEmployee, CodeMenuReport, CodeExitProgram
 };
 enum actionsCodeReport
 {
-	codePrintAllEmployee = 1, codePrintInfoEmployee, codeSearchSalaryRange, codeExitReport
+	CodePrintAllEmployee = 1, CodePrintInfoEmployee, CodeSearchSalaryRange, CodeExitReport
 };
 
 void printInfoStruct(Employee point);
