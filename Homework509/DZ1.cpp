@@ -9,7 +9,7 @@ int main()
 
 	while (true)
 	{
-		printMenuMain();
+		PrintMenuMain();
 		cout << "\nChoose option: ";
 		cin >> UserChoice;
 		cin.ignore(255, '\n');
@@ -17,17 +17,17 @@ int main()
 		switch (UserChoice)
 		{
 		case CodeAddEmployee:
-			addEmployee(pathEmployee);
+			AddEmployee(pathEmployee);
 			break;
 		case CodeDelEmployee:
-			delEmployee(pathEmployee, pathTemp);
+			DelEmployee(pathEmployee, pathTemp);
 			break;
 		case CodeMenuReport:
 			returnToMain = false;
 			do
 			{
 				system("cls");
-				printMenuReport();
+				PrintMenuReport();
 				cout << "\nChoose option: ";
 				cin >> UserChoice;
 				cin.ignore(255, '\n');
@@ -35,13 +35,13 @@ int main()
 				switch (UserChoice)
 				{
 				case CodePrintAllEmployee:
-					printAllEmployee(pathEmployee);
+					PrintAllEmployee(pathEmployee);
 					break;
 				case CodePrintInfoEmployee:
-					printInfoEmployee(pathEmployee);
+					PrintInfoEmployee(pathEmployee);
 					break;
 				case CodeSearchSalaryRange:
-					searchSalaryRange(pathEmployee);
+					SearchSalaryRange(pathEmployee);
 					break;
 				case CodeExitReport:
 					cout << "Returning to main menu...";
@@ -68,31 +68,37 @@ int main()
 }
 
 
-void printMenuMain()
+void PrintMenuMain()
 {
+	allocation();
 	cout << "\tMain menu:" << endl;
 	cout << "[" << CodeAddEmployee << "] - Add new employee" << endl;
 	cout << "[" << CodeDelEmployee << "] - Delete employee" << endl;
 	cout << "[" << CodeMenuReport << "] - Open report menu" << endl;
 	cout << "[" << CodeExitProgram << "] - Exit the program" << endl;
+	allocation();
 }
-void printMenuReport()
+void PrintMenuReport()
 {
+	allocation();
 	cout << "\tReport options:" << endl;
 	cout << "[" << CodePrintAllEmployee << "] - Print full list of employee" << endl;
 	cout << "[" << CodePrintInfoEmployee << "] - Print information about the employee" << endl;
 	cout << "[" << CodeSearchSalaryRange << "] - Search by salary range" << endl;
 	cout << "[" << CodeExitReport << "] - Go back to main menu" << endl;
+	allocation();
 }
 
 
-void printInfoStruct(Employee point)
+void PrintInfoStruct(Employee point)
 {
+	allocation();
 	printf("Full name: %s %s\n", point.firstName, point.lastName);
 	printf("Phone number: %s\n", point.phoneNumber);
 	printf("Salary: %f\n", point.salary);
+	allocation();
 }
-char* lowercase(char* str)
+char* Lowercase(char* str)
 {
 	for (int i = 0; i < str[i] != '\0'; i++)
 	{
@@ -103,8 +109,9 @@ char* lowercase(char* str)
 }
 
 
-void addEmployee(const char pathEmployee[])
+void AddEmployee(const char pathEmployee[])
 {
+	allocation();
 	FILE* file;
 	errno_t code = fopen_s(&file, pathEmployee, "ab");
 	if (code == 0)
@@ -131,9 +138,11 @@ void addEmployee(const char pathEmployee[])
 	}
 	else
 		cout << "Error. Code: " << code << endl;
+	allocation();
 }
-void delEmployee(const char pathEmployee[], const char pathTemp[])
+void DelEmployee(const char pathEmployee[], const char pathTemp[])
 {
+	allocation();
 	FILE* file;
 	FILE* temp;
 	bool isFind = false;
@@ -150,8 +159,8 @@ void delEmployee(const char pathEmployee[], const char pathTemp[])
 		cout << "Last name: ";
 		cin >> lastName;
 
-		lowercase(firstName);
-		lowercase(lastName);
+		Lowercase(firstName);
+		Lowercase(lastName);
 
 		Employee point;
 		while (!feof(file))
@@ -159,8 +168,8 @@ void delEmployee(const char pathEmployee[], const char pathTemp[])
 			if (fread(&point, sizeof(Employee), 1, file))
 			{
 				Employee pointTemp = point;
-				lowercase(pointTemp.firstName);
-				lowercase(pointTemp.lastName);
+				Lowercase(pointTemp.firstName);
+				Lowercase(pointTemp.lastName);
 				if (strcmp(firstName, pointTemp.firstName) == 0 && strcmp(lastName, pointTemp.lastName) == 0)
 					isFind = true;
 				else
@@ -202,11 +211,13 @@ void delEmployee(const char pathEmployee[], const char pathTemp[])
 	}
 	else
 		cout << "The employee was not found in the book" << endl;
+	allocation();
 }
 
 
-void printAllEmployee(const char pathEmployee[])
+void PrintAllEmployee(const char pathEmployee[])
 {
+	allocation();
 	FILE* file;
 	errno_t code = fopen_s(&file, pathEmployee, "rb");
 	if (code == 0)
@@ -218,7 +229,7 @@ void printAllEmployee(const char pathEmployee[])
 			if (fread(&point, sizeof(Employee), 1, file))
 			{
 				printf("\tEmployee #%d\n", counter++);
-				printInfoStruct(point);
+				PrintInfoStruct(point);
 				cout << endl;
 			}
 		}
@@ -230,9 +241,11 @@ void printAllEmployee(const char pathEmployee[])
 	}
 	else
 		cout << "Error. Code: " << code << endl;
+	allocation();
 }
-void printInfoEmployee(const char pathEmployee[])
+void PrintInfoEmployee(const char pathEmployee[])
 {
+	allocation();
 	FILE* file;
 	errno_t code = fopen_s(&file, pathEmployee, "rb");
 	if (code == 0)
@@ -242,7 +255,7 @@ void printInfoEmployee(const char pathEmployee[])
 		cout << "Enter last name employee: ";
 		cin >> lastName;
 		cout << endl;
-		lowercase(lastName);
+		Lowercase(lastName);
 
 		Employee point;
 		while (!feof(file))
@@ -250,10 +263,10 @@ void printInfoEmployee(const char pathEmployee[])
 			if (fread(&point, sizeof(Employee), 1, file))
 			{
 				Employee pointTemp = point;
-				lowercase(pointTemp.lastName);
+				Lowercase(pointTemp.lastName);
 				if (strcmp(lastName, pointTemp.lastName) == 0)
 				{
-					printInfoStruct(point);
+					PrintInfoStruct(point);
 					cout << endl;
 					isFind = true;
 				}
@@ -265,9 +278,11 @@ void printInfoEmployee(const char pathEmployee[])
 	}
 	else
 		cout << "Error. Code: " << code << endl;
+	allocation();
 }
-void searchSalaryRange(const char pathEmployee[])
+void SearchSalaryRange(const char pathEmployee[])
 {
+	allocation();
 	FILE* file;
 	errno_t code = fopen_s(&file, pathEmployee, "rb");
 	if (code == 0)
@@ -290,7 +305,7 @@ void searchSalaryRange(const char pathEmployee[])
 				if (point.salary >= MinRange && point.salary <= MaxRange)
 				{
 					printf("\tEmployee #%d\n", counter++);
-					printInfoStruct(point);
+					PrintInfoStruct(point);
 					cout << endl;
 					isFind = true;
 				}
@@ -302,5 +317,14 @@ void searchSalaryRange(const char pathEmployee[])
 	}
 	else
 		cout << "Error. Code: " << code << endl;
+	allocation();
 }
 
+void allocation()
+{
+	for (int i = 0; i <= 20; i++)
+	{
+		cout << "-";
+	}
+	cout << endl;
+}

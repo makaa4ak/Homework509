@@ -22,15 +22,17 @@ enum actionsCodeReport
 	CodePrintAllEmployee = 1, CodePrintInfoEmployee, CodeSearchSalaryRange, CodeExitReport
 };
 
-void printInfoStruct(Employee point);
-char* lowercase(char* str);
+void PrintInfoStruct(Employee point);
+char* Lowercase(char* str);
 
-void addEmployee(const char pathEmployee[]);
-void delEmployee(const char pathEmployee[], const char pathTemp[]);
+void AddEmployee(const char pathEmployee[]);
+void DelEmployee(const char pathEmployee[], const char pathTemp[]);
 
-void printAllEmployee(const char pathEmployee[]);
-void printInfoEmployee(const char pathEmployee[]);
-void searchSalaryRange(const char pathEmployee[]);
+void PrintAllEmployee(const char pathEmployee[]);
+void PrintInfoEmployee(const char pathEmployee[]);
+void SearchSalaryRange(const char pathEmployee[]);
 
-void printMenuMain();
-void printMenuReport();
+void PrintMenuMain();
+void PrintMenuReport();
+
+void allocation();
