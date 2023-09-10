@@ -67,6 +67,25 @@ int main()
 	}
 }
 
+
+void printMenuMain()
+{
+	cout << "\tMain menu:" << endl;
+	cout << "[" << CodeAddEmployee << "] - Add new employee" << endl;
+	cout << "[" << CodeDelEmployee << "] - Delete employee" << endl;
+	cout << "[" << CodeMenuReport << "] - Open report menu" << endl;
+	cout << "[" << CodeExitProgram << "] - Exit the program" << endl;
+}
+void printMenuReport()
+{
+	cout << "\tReport options:" << endl;
+	cout << "[" << CodePrintAllEmployee << "] - Print full list of employee" << endl;
+	cout << "[" << CodePrintInfoEmployee << "] - Print information about the employee" << endl;
+	cout << "[" << CodeSearchSalaryRange << "] - Search by salary range" << endl;
+	cout << "[" << CodeExitReport << "] - Go back to main menu" << endl;
+}
+
+
 void printInfoStruct(Employee point)
 {
 	printf("Full name: %s %s\n", point.firstName, point.lastName);
@@ -82,6 +101,7 @@ char* lowercase(char* str)
 	}
 	return str;
 }
+
 
 void addEmployee(const char pathEmployee[])
 {
@@ -184,6 +204,7 @@ void delEmployee(const char pathEmployee[], const char pathTemp[])
 		cout << "The employee was not found in the book" << endl;
 }
 
+
 void printAllEmployee(const char pathEmployee[])
 {
 	FILE* file;
@@ -252,12 +273,12 @@ void searchSalaryRange(const char pathEmployee[])
 	if (code == 0)
 	{
 		bool isFind = false;
-		int minRange;
-		int maxRange;
+		int MinRange;
+		int MaxRange;
 		cout << "Enter the minimum salary range: ";
-		cin >> minRange;
+		cin >> MinRange;
 		cout << "Enter the maximum salary range: ";
-		cin >> maxRange;
+		cin >> MaxRange;
 		cout << endl;
 
 		Employee point;
@@ -266,7 +287,7 @@ void searchSalaryRange(const char pathEmployee[])
 		{
 			if (fread(&point, sizeof(Employee), 1, file))
 			{
-				if (point.salary >= minRange && point.salary <= maxRange)
+				if (point.salary >= MinRange && point.salary <= MaxRange)
 				{
 					printf("\tEmployee #%d\n", counter++);
 					printInfoStruct(point);
@@ -283,19 +304,3 @@ void searchSalaryRange(const char pathEmployee[])
 		cout << "Error. Code: " << code << endl;
 }
 
-void printMenuMain()
-{
-	cout << "\tMain menu:" << endl;
-	cout << "[" << CodeAddEmployee << "] - Add new employee" << endl;
-	cout << "[" << CodeDelEmployee << "] - Delete employee" << endl;
-	cout << "[" << CodeMenuReport << "] - Open report menu" << endl;
-	cout << "[" << CodeExitProgram << "] - Exit the program" << endl;
-}
-void printMenuReport()
-{
-	cout << "\tReport options:" << endl;
-	cout << "[" << CodePrintAllEmployee << "] - Print full list of employee" << endl;
-	cout << "[" << CodePrintInfoEmployee << "] - Print information about the employee" << endl;
-	cout << "[" << CodeSearchSalaryRange << "] - Search by salary range" << endl;
-	cout << "[" << CodeExitReport << "] - Go back to main menu" << endl;
-}
